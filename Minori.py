@@ -47,7 +47,7 @@ FamiglieS= FamiglieS.sort_values(by="Percentuale", ascending=True)
 st.set_page_config(layout="wide")
 #set titolo applicazione
 st.title("StatiX")
-st.write("App per la visualizzazione dei dati statistici relativi al Comune di Lecco (minori, adulti e over 65 anni, scuole e asili)-statistiche aggiornate il 14/11/2023")
+st.write("App per la visualizzazione dei dati statistici relativi al Comune di Lecco (minori, adulti e over 65 anni, scuole e asili) - statistiche aggiornate il 14/11/2023")
 #crea il markdown minori
 st.markdown("# Minori")
 #crea la sidebar con i markdown
@@ -78,6 +78,7 @@ with ((primaRiga)):
     with colpr2:
         #NUOVI NATI NELL'ANNO
         st.subheader("Nuovi nati nell'anno e residenti a Lecco")
+        st.write("Ultimi 12 mesi")
         st.write(TotaleNuoviNatiPDS)
         #DISTRIBUZIONE MINORI NATI NEI QUARTIERI
         st.subheader("Distribuzione (%) nei quartieri")
