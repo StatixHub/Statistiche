@@ -11,20 +11,20 @@ import pandas as pd
 from pandas import DataFrame
 from matplotlib import pyplot as plt
 import streamlit as st
-import plotly.express as px
+import plotly as px
 import squarify
 import altair as alt
 import seaborn as sb
-import plotly.graph_objects as go
 
 
-RapportoAbSCivS=pd.read_csv("../Destinazione/CSV/RapportoAbSCiv.csv")
-SLEtaS=pd.read_csv("../Destinazione/CSV/SLEta.csv")
-SLEta017GS=pd.read_csv("../Destinazione/CSV/SLEta017G.csv")
-SLEta1864GS=pd.read_csv("../Destinazione/CSV/SLEta1864G.csv")
-SLEta65GS=pd.read_csv("../Destinazione/CSV/SLEta65G.csv")
-QuartieriSLS=pd.read_csv("../Destinazione/CSV/QuartieriSL.csv")
-SoloQuartieriS=pd.read_csv("../Destinazione/CSV/SoloQuartieri.csv")
+
+RapportoAbSCivS=pd.read_csv("./Destinazione/CSV/RapportoAbSCiv.csv")
+SLEtaS=pd.read_csv("./Destinazione/CSV/SLEta.csv")
+SLEta017GS=pd.read_csv("./Destinazione/CSV/SLEta017G.csv")
+SLEta1864GS=pd.read_csv("./Destinazione/CSV/SLEta1864G.csv")
+SLEta65GS=pd.read_csv("./Destinazione/CSV/SLEta65G.csv")
+QuartieriSLS=pd.read_csv("./Destinazione/CSV/QuartieriSL.csv")
+SoloQuartieriS=pd.read_csv("./Destinazione/CSV/SoloQuartieri.csv")
 
 
 #set pagina su tutta l'ampiezza
