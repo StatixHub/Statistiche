@@ -1,6 +1,5 @@
 altair
 streamlit
-pyplot
 seaborn
 squarify
 matplotlib
