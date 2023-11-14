@@ -11,20 +11,20 @@ import pandas as pd
 from pandas import DataFrame
 from matplotlib import pyplot as plt
 import streamlit as st
-import plotly.express as px
+import plotly as px
 import squarify
 import seaborn as sb
 import altair as alt
 
 #importa i db dai csv
-RapportoAbAnzS= pd.read_csv("../Destinazione/CSV/RapportoAbAnz.csv")
-AnzianiQuartS= pd.read_csv("../Destinazione/CSV/AnzianiQuart.csv")
-MF65S = pd.read_csv("../Destinazione/CSV/MF65.csv")
-MQuartieri65S = pd.read_csv("../Destinazione/CSV/MQuartieri65.csv")
-FQuartieri65S = pd.read_csv("../Destinazione/CSV/FQuartieri65.csv")
-MFQuartieri65S = pd.read_csv("../Destinazione/CSV/MFQuartieri65.csv")
-RapportoStrAnzS = pd.read_csv("../Destinazione/CSV/RapportoStrAnz.csv")
-StranieriQuart65S = pd.read_csv("../Destinazione/CSV/StranieriQuart65.csv")
+RapportoAbAnzS= pd.read_csv("./Destinazione/CSV/RapportoAbAnz.csv")
+AnzianiQuartS= pd.read_csv("./Destinazione/CSV/AnzianiQuart.csv")
+MF65S = pd.read_csv("./Destinazione/CSV/MF65.csv")
+MQuartieri65S = pd.read_csv("./Destinazione/CSV/MQuartieri65.csv")
+FQuartieri65S = pd.read_csv("./Destinazione/CSV/FQuartieri65.csv")
+MFQuartieri65S = pd.read_csv("./Destinazione/CSV/MFQuartieri65.csv")
+RapportoStrAnzS = pd.read_csv("./Destinazione/CSV/RapportoStrAnz.csv")
+StranieriQuart65S = pd.read_csv("./Destinazione/CSV/StranieriQuart65.csv")
 
 #set pagina su tutta l'ampiezza
 st.set_page_config(layout="wide")
