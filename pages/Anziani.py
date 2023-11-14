@@ -11,7 +11,7 @@ import pandas as pd
 from pandas import DataFrame
 from matplotlib import pyplot as plt
 import streamlit as st
-import plotly as px
+import plotly.express as px
 import squarify
 import seaborn as sb
 import altair as alt
