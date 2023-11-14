@@ -3,4 +3,4 @@ streamlit
 seaborn
 squarify
 matplotlib
-plotly
+plotly_express
