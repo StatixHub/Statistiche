@@ -11,33 +11,33 @@ import pandas as pd
 from pandas import DataFrame
 from matplotlib import pyplot as plt
 import streamlit as st
-import plotly.express as px
+import plotly as px
 import squarify
 import altair as alt
 import seaborn as sb
-import plotly.graph_objects as go
+
 
 #importa i db dai csv
-RapportoAbMinS = pd.read_csv("../Destinazione/CSV/RapportoAbMin.csv")
-TotaleNuoviNatiPDS = pd.read_csv("../Destinazione/CSV/TotaleNuoviNatiPD.csv")
-NuoviNatiQuarS = pd.read_csv("../Destinazione/CSV/NuoviNatiQuar.csv")
-Minori017QuartS = pd.read_csv("../Destinazione/CSV/Minori017Quart.csv")
-FamiglieS= pd.read_csv("../Destinazione/CSV/Minori017Quart.csv")
-MF017S = pd.read_csv("../Destinazione/CSV/MF017.csv")
-MQuartieriS=pd.read_csv("../Destinazione/CSV/MQuartieri.csv")
-FQuartieriS=pd.read_csv("../Destinazione/CSV/FQuartieri.csv")
-MFQuartieriS=pd.read_csv("../Destinazione/CSV/MFQuartieri.csv")
-MF02S=pd.read_csv("../Destinazione/CSV/MF02.csv")
-MF35S=pd.read_csv("../Destinazione/CSV/MF35.csv")
-MF69S=pd.read_csv("../Destinazione/CSV/MF69.csv")
-MF1013S=pd.read_csv("../Destinazione/CSV/MF1013.csv")
-MF1417S=pd.read_csv("../Destinazione/CSV/MF1417.csv")
-MinoriFasceS=pd.read_csv("../Destinazione/CSV/MinoriFasce.csv")
-DistrFasceS=pd.read_csv("../Destinazione/CSV/DistrFasce.csv")
-RapportoStrMinS= pd.read_csv("../Destinazione/CSV/RapportoStrMin.csv")
-Stranieri017QuartS= pd.read_csv("../Destinazione/CSV/Stranieri017Quart.csv")
-StranieriFasceS= pd.read_csv("../Destinazione/CSV/StranieriFasce.csv")
-DistrFasceSTRS= pd.read_csv("../Destinazione/CSV/DistrFascSTR.csv")
+RapportoAbMinS = pd.read_csv("Destinazione/CSV/RapportoAbMin.csv")
+TotaleNuoviNatiPDS = pd.read_csv("Destinazione/CSV/TotaleNuoviNatiPD.csv")
+NuoviNatiQuarS = pd.read_csv("Destinazione/CSV/NuoviNatiQuar.csv")
+Minori017QuartS = pd.read_csv("Destinazione/CSV/Minori017Quart.csv")
+FamiglieS= pd.read_csv("Destinazione/CSV/Minori017Quart.csv")
+MF017S = pd.read_csv("Destinazione/CSV/MF017.csv")
+MQuartieriS=pd.read_csv("Destinazione/CSV/MQuartieri.csv")
+FQuartieriS=pd.read_csv("Destinazione/CSV/FQuartieri.csv")
+MFQuartieriS=pd.read_csv("Destinazione/CSV/MFQuartieri.csv")
+MF02S=pd.read_csv("Destinazione/CSV/MF02.csv")
+MF35S=pd.read_csv("Destinazione/CSV/MF35.csv")
+MF69S=pd.read_csv("Destinazione/CSV/MF69.csv")
+MF1013S=pd.read_csv("Destinazione/CSV/MF1013.csv")
+MF1417S=pd.read_csv("Destinazione/CSV/MF1417.csv")
+MinoriFasceS=pd.read_csv("Destinazione/CSV/MinoriFasce.csv")
+DistrFasceS=pd.read_csv("Destinazione/CSV/DistrFasce.csv")
+RapportoStrMinS= pd.read_csv("Destinazione/CSV/RapportoStrMin.csv")
+Stranieri017QuartS= pd.read_csv("Destinazione/CSV/Stranieri017Quart.csv")
+StranieriFasceS= pd.read_csv("Destinazione/CSV/StranieriFasce.csv")
+DistrFasceSTRS= pd.read_csv("Destinazione/CSV/DistrFascSTR.csv")
 
 #Ordine FamiglieS per grafico
 FamiglieS= FamiglieS.sort_values(by="Percentuale", ascending=True)
