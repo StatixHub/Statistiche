@@ -91,8 +91,7 @@ with ((primaRiga)):
         #GRAFICO DISTRIBUZIONE MINORI NEI QUARTIERI
         st.subheader("Distribuzione (%) dei minori nei quartieri")
         # crea grafico
-        M017Q = alt.Chart(Minori017QuartS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#990066"), strokeWidth=2.5, color="#990066"
-                                                     ).encode(alt.X("Quartiere"), alt.Y("Percentuale")).interactive()
+        M017Q = alt.Chart(Minori017QuartS).mark_bar(color="#990066").encode(alt.X("Quartiere"), alt.Y("Percentuale")).interactive()
         text = M017Q.mark_text(
             align="center",
             baseline="middle",
@@ -321,10 +320,8 @@ with quintaRiga:
         #DISTRIBUZIONE DEGLI STRANIERI NEI QUARTIERI
         st.subheader("Distribuzione (%) degli stranieri nei quartieri")
         # crea grafico
-        STRQ017 = alt.Chart(Stranieri017QuartS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#3399FF"),
-                                                 strokeWidth=2, color="#3399FF"
-                                                 ).encode(alt.X("Quartiere"),
-                                                          alt.Y("Percentuale")).interactive()
+        STRQ017 = alt.Chart(Stranieri017QuartS).mark_bar(color="#3399FF").encode(alt.X("Quartiere"),
+                                                                            alt.Y("Percentuale")).interactive()
         text = STRQ017.mark_text(
             align="center",
             baseline="middle",
