@@ -62,9 +62,8 @@ with primaRiga:
     #GRAFICO DISTRIBUZIONE ADULTI NEI QUARTIERI
         st.subheader("Distribuzione (%) segli adulti nei quartieri")
         # crea grafico
-        ADQ = alt.Chart(AdultiQuartS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#990066"),
-                                             strokeWidth=2, color="#990066"
-                                             ).encode(alt.X("Quartiere"), alt.Y("Percentuale")).interactive()
+        ADQ = alt.Chart(AdultiQuartS).mark_bar(color="#990066").encode(alt.X("Quartiere"),
+                                                                        alt.Y("Percentuale")).interactive()
 
         text = ADQ.mark_text(
             align="center",
@@ -151,10 +150,8 @@ with terzaRiga:
     with coltz2:
         #DISTRIBUZIONE DEGLI STRANIERI NEI QUARTIERI
         st.subheader("Distribuzione (%) degli stranieri nei quartieri")
-        SADQ = alt.Chart(StranieriQuart1864S).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#3399FF"),
-                                                    strokeWidth=2, color="#3399FF"
-                                                    ).encode(alt.X("Quartiere"),
-                                                             alt.Y("Percentuale")).interactive()
+        SADQ = alt.Chart(StranieriQuart1864S).mark_bar(color="#3399FF").encode(alt.X("Quartiere"),
+                                                                       alt.Y("Percentuale")).interactive()
 
         text = SADQ.mark_text(
             align="center",
