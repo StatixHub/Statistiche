@@ -31,10 +31,10 @@ st.set_page_config(layout="wide")
 #set titolo applicazione
 st.title("StatiX")
 st.write("App per la visualizzazione dei dati statistici relativi al Comune di Lecco (minori, adulti e over 65 anni, scuole e asili)")
-#crea il markdown minori
-st.markdown("# Adulti")
+#crea il markdown anziani
+st.markdown("# Anziani")
 #crea la sidebar con i markdown
-st.sidebar.markdown("# Adulti")
+st.sidebar.markdown("# Anziani")
 
 #colori
 colorQuart= ["#FF0066", "#FF6699", "#CC3366", "#993333", "#CC3333", "#990000", "#660000", "#993300", "#CC6633", "#CC9933", "#FFCC33", "#999900", "#666600", "#669900", "#339966"]
