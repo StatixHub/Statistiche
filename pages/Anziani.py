@@ -62,9 +62,8 @@ with primaRiga:
     with colpr2:
     #GRAFICO DISTRIBUZIONE ANZIANI NEI QUARTIERI
         st.subheader("Distribuzione (%) degli over 65 nei quartieri")
-        ANQ = alt.Chart(AnzianiQuartS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#990066"),
-                                                strokeWidth=2, color="#990066"
-                                                ).encode(alt.X("Quartiere"), alt.Y("Percentuale")).interactive()
+        ANQ = alt.Chart(AnzianiQuartS).mark_bar(color="#990066").encode(alt.X("Quartiere"),
+                                                                           alt.Y("Percentuale")).interactive()
 
         text = ANQ.mark_text(
             align="center",
@@ -153,10 +152,8 @@ with terzaRiga:
     with coltz2:
         #DISTRIBUZIONE DEGLI STRANIERI NEI QUARTIERI
         st.subheader("Distribuzione (%) degli stranieri nei quartieri")
-        SANQ = alt.Chart(StranieriQuart65S).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#3399FF"),
-                                                        strokeWidth=2, color="#3399FF"
-                                                        ).encode(alt.X("Quartiere"),
-                                                                 alt.Y("Percentuale")).interactive()
+        SANQ = alt.Chart(StranieriQuart65S).mark_bar(color="#3399FF").encode(alt.X("Quartiere"),
+                                                                        alt.Y("Percentuale")).interactive()
 
         text = SANQ.mark_text(
             align="center",
