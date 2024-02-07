@@ -38,7 +38,7 @@ st.sidebar.markdown("# Adulti")
 
 #colori
 colorQuart= ["#FF0066", "#FF6699", "#CC3366", "#993333", "#CC3333", "#990000", "#660000", "#993300", "#CC6633", "#CC9933", "#FFCC33", "#999900", "#666600", "#669900", "#339966"]
-colorMF= ["#FF0066, #33CCCC"]
+colorMF= ["#FF0066", "#33CCCC"]
 colorFasce= ["#D69EC4", "#B772A1", "#C42B91", "#912F70", "#990066"]
 colorFasceSTR= ["#C0E8FB", "#6ECFF6", "#0093D7", "#0072B9", "#214297"]
 
