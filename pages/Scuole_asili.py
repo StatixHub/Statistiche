@@ -15,25 +15,25 @@ import plotly.express as px
 import squarify
 import altair as alt
 import seaborn as sb
+import plotly.graph_objects as go
 
 
-
-SInfanziaPS = pd.read_csv("./Destinazione/CSV/SInfanziaP.csv")
-SPrimariePS = pd.read_csv("./Destinazione/CSV/SPrimarieP.csv")
-SSecondarieIGradoPS = pd.read_csv("./Destinazione/CSV/SSecondarieIGradoP.csv")
-ISTLecco1S = pd.read_csv("./Destinazione/CSV/ISTLecco1.csv")
-ISTLecco2S = pd.read_csv("./Destinazione/CSV/ISTLecco2.csv")
-ISTLecco3S = pd.read_csv("./Destinazione/CSV/ISTLecco3.csv")
-SoloInfanziaConcS = pd.read_csv("./Destinazione/CSV/SoloInfanziaConc.csv")
-SoloPrimariaConcS = pd.read_csv("./Destinazione/CSV/SoloPrimariaConc.csv")
-SoloSecondariaConcS = pd.read_csv("./Destinazione/CSV/SoloSecondariaConc.csv")
-RapportoScuoleStaParIS = pd.read_csv("./Destinazione/CSV/RapportoScuoleStaParI.csv")
-RapportoScuoleStaParPS = pd.read_csv("./Destinazione/CSV/RapportoScuoleStaParP.csv")
-RapportoScuoleStaParSS = pd.read_csv("./Destinazione/CSV/RapportoScuoleStaParS.csv")
-RapportoParitarieStataliS = pd.read_csv("./Destinazione/CSV/RapportoParitarieStatali.csv")
-RapportoAsiloMinoriS = pd.read_csv("./Destinazione/CSV/RapportoAsiloMinori.csv")
-ANAmmessiS = pd.read_csv("./Destinazione/CSV/ANAmmessi.csv")
-ANAttesaS = pd.read_csv("./Destinazione/CSV/ANAttesa.csv")
+SInfanziaPS = pd.read_csv("../Destinazione/CSV/SInfanziaP.csv")
+SPrimariePS = pd.read_csv("../Destinazione/CSV/SPrimarieP.csv")
+SSecondarieIGradoPS = pd.read_csv("../Destinazione/CSV/SSecondarieIGradoP.csv")
+ISTLecco1S = pd.read_csv("../Destinazione/CSV/ISTLecco1.csv")
+ISTLecco2S = pd.read_csv("../Destinazione/CSV/ISTLecco2.csv")
+ISTLecco3S = pd.read_csv("../Destinazione/CSV/ISTLecco3.csv")
+SoloInfanziaConcS = pd.read_csv("../Destinazione/CSV/SoloInfanziaConc.csv")
+SoloPrimariaConcS = pd.read_csv("../Destinazione/CSV/SoloPrimariaConc.csv")
+SoloSecondariaConcS = pd.read_csv("../Destinazione/CSV/SoloSecondariaConc.csv")
+RapportoScuoleStaParIS = pd.read_csv("../Destinazione/CSV/RapportoScuoleStaParI.csv")
+RapportoScuoleStaParPS = pd.read_csv("../Destinazione/CSV/RapportoScuoleStaParP.csv")
+RapportoScuoleStaParSS = pd.read_csv("../Destinazione/CSV/RapportoScuoleStaParS.csv")
+RapportoParitarieStataliS = pd.read_csv("../Destinazione/CSV/RapportoParitarieStatali.csv")
+RapportoAsiloMinoriS = pd.read_csv("../Destinazione/CSV/RapportoAsiloMinori.csv")
+ANAmmessiS = pd.read_csv("../Destinazione/CSV/ANAmmessi.csv")
+ANAttesaS = pd.read_csv("../Destinazione/CSV/ANAttesa.csv")
 
 #set pagina su tutta l'ampiezza
 st.set_page_config(layout="wide")
@@ -54,6 +54,49 @@ with primaRiga:
     #configura numero colonne
     colpr1, colpr2, colpr3 = st.columns(3, gap="medium")
     with colpr1:
+        # GRAFICO ISCRITTI ALLA SCUOLA PER L'INFANZIA STATALE
+        st.subheader("Iscritti (%) alle scuole per l'infanzia statali")
+        # crea grafico
+        SoloINFConc = alt.Chart(SoloInfanziaConcS).mark_bar(color="#70B0E0").encode(alt.X("PLESSO"), alt.Y("Percentuale"))
+        # label
+        textSoloINFConc = SoloINFConc.mark_text(align="center", baseline="bottom").encode(text="Percentuale")
+
+        # stampa grafico + label
+        st.altair_chart(SoloINFConc+textSoloINFConc, use_container_width=True)
+        with st.expander("Tabella iscritti alle scuole per l'infanzia statali"):
+            st.write(SoloInfanziaConcS )
+    with colpr2:
+        # GRAFICO ISCRITTI ALLA SCUOLA PRIMARIA STATALE
+        st.subheader("Iscritti (%) alle scuole primarie statali")
+
+        SoloPRIMConc= alt.Chart(SoloPrimariaConcS).mark_bar(color="#9B0065").encode(alt.X("PLESSO"), alt.Y("Percentuale"))
+        # label
+        textSoloPRIMConc = SoloPRIMConc.mark_text(align="center", baseline="bottom").encode(text="Percentuale")
+        # stampa grafico + label
+        st.altair_chart(SoloPRIMConc+textSoloPRIMConc, use_container_width=True)
+        with st.expander("Tabella iscritti alle scuole primarie statali"):
+            st.write(SoloPrimariaConcS)
+    with colpr3:
+        # GRAFICO ISCRITTI ALLA SCUOLA SECONDARIA STATALE
+        st.subheader("Iscritti (%) alle scuole secondarie di I grado statali")
+        # crea grafico
+
+
+        SoloSECConc = alt.Chart(SoloSecondariaConcS).mark_bar(color="#B6B0FF").encode(alt.X("PLESSO"), alt.Y("Percentuale"))
+        # label
+        textSoloSECConc = SoloSECConc.mark_text(align="center", baseline="bottom").encode(text="Percentuale")
+        # stampa grafico + label
+        st.altair_chart(SoloSECConc+textSoloSECConc, use_container_width=True)
+        with st.expander("Tabella iscritti alle scuole secondarie di I grado statali"):
+            st.write(SoloSecondariaConcS)
+
+
+
+secondaRiga = st.container()
+with secondaRiga:
+    #configura numero colonne
+    colsr1, colsr2, colsr3 = st.columns(3, gap="medium")
+    with colsr1:
         #GRAFICO ISCRITTI ALLA SCUOLA DELL'INFANZIA
         st.subheader("Iscritti (%) alle scuole dell'infanzia paritarie")
         # crea grafico
@@ -64,7 +107,7 @@ with primaRiga:
         st.altair_chart(SIPS + textSIPS, use_container_width=True)
         with st.expander("Tabella iscritti alla scuole dell'infanzia paritarie"):
             st.write(SInfanziaPS)
-    with colpr2:
+    with colsr2:
         #GRAFICO ISCRITTI ALLA SCUOLA PRIMARIA PARITARIA
         st.subheader("Iscritti (%) alle scuole primarie paritarie")
         # crea grafico
@@ -75,7 +118,7 @@ with primaRiga:
         st.altair_chart(SPPS + textSPPS, use_container_width=True)
         with st.expander("Tabella iscritti alle scuole primarie paritarie"):
             st.write(SPrimariePS)
-    with colpr3:
+    with colsr3:
         # GRAFICO ISCRITTI ALLA SCUOLA SECONDARIA DI SECONDO GRADO
         st.subheader("Iscritti (%) alle scuole secondarie di secondo grado paritarie")
         # crea grafico
@@ -87,11 +130,11 @@ with primaRiga:
         with st.expander("Tabella iscritti alle scuole secondarie di secondo grado paritarie"):
             st.write(SSecondarieIGradoPS)
 
-secondaRiga = st.container()
-with secondaRiga:
+terzaRiga = st.container()
+with terzaRiga:
     #configura numero colonne
-    colsc1, colsc2, colsc3 = st.columns(3, gap="medium")
-    with colpr1:
+    coltr1, coltr2, coltr3 = st.columns(3, gap="medium")
+    with coltr1:
         #GRAFICO ISCRITTI ALL'ISTITUTO COMPRENSIVO LECCO 1
         st.subheader("Iscritti (%) all'Istituto Comprensivo Lecco 1")
         figIST1 = px.bar(ISTLecco1S, x="PLESSO", y="Percentuale", color="TIPOLOGIA", barmode='group', height=400,
@@ -102,7 +145,7 @@ with secondaRiga:
         st.plotly_chart(figIST1, use_container_width=True)
         with st.expander("Tabella iscritti all'Istituto Comprensivo Lecco 1"):
             st.write(ISTLecco1S)
-    with colpr2:
+    with coltr2:
         #GRAFICO ISCRITTI ALL'ISTITUTO COMPRENSIVO LECCO 2
         st.subheader("Iscritti (%) all'Istituto Comprensivo Lecco 2")
         figIST2 = px.bar(ISTLecco2S, x="PLESSO", y="Percentuale", color="TIPOLOGIA", barmode='group', height=400,
@@ -113,7 +156,7 @@ with secondaRiga:
         st.plotly_chart(figIST2, use_container_width=True)
         with st.expander("Tabella iscritti all'Istituto Comprensivo Lecco 2"):
             st.write(ISTLecco2S)
-    with colpr3:
+    with coltr3:
         #GRAFICO ISCRITTI ALL'ISTITUTO COMPRENSIVO LECCO 3
         st.subheader("Iscritti (%) all'Istituto Comprensivo Lecco 3")
         figIST3 = px.bar(ISTLecco3S, x="PLESSO", y="Percentuale", color="TIPOLOGIA", barmode='group', height=400,
@@ -125,57 +168,6 @@ with secondaRiga:
         with st.expander("Tabella iscritti all'Istituto Comprensivo Lecco 3"):
             st.write(ISTLecco3S)
 
-terzaRiga = st.container()
-with terzaRiga:
-    #configura numero colonne
-    coltz1, coltz2, coltz3 = st.columns(3, gap="medium")
-    with coltz1:
-        # GRAFICO ISCRITTI ALLA SCUOLA PER L'INFANZIA STATALE
-        st.subheader("Iscritti (%) alla scuola per l'infanzia statale")
-        # crea grafico
-        SoloINFConc = alt.Chart(SoloInfanziaConcS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#70B0E0"),
-                                                     strokeWidth=2.5, color="#70B0E0"
-                                                     ).encode(alt.X("PLESSO"), alt.Y("Percentuale")).interactive()
-        text = SoloINFConc.mark_text(
-            align="center",
-            baseline="middle",
-            dy=-7).encode(text="Percentuale")
-        # stampa grafico + label
-        st.altair_chart(SoloINFConc+text, use_container_width=True)
-        with st.expander("Tabella iscritti alla scuola per l'infanzia statale"):
-            st.write(SoloInfanziaConcS )
-    with coltz2:
-        # GRAFICO ISCRITTI ALLA SCUOLA PRIMARIA STATALE
-        st.subheader("Iscritti (%) alla scuola per l'infanzia statale")
-        # crea grafico
-        SoloPRIMConc = alt.Chart(SoloPrimariaConcS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#9B0065"),
-                                                             strokeWidth=2.5, color="#9B0065"
-                                                             ).encode(alt.X("PLESSO"),
-                                                                      alt.Y("Percentuale")).interactive()
-        text = SoloPRIMConc.mark_text(
-            align="center",
-            baseline="middle",
-            dy=-7).encode(text="Percentuale")
-        # stampa grafico + label
-        st.altair_chart(SoloPRIMConc+text, use_container_width=True)
-        with st.expander("Tabella iscritti alla scuola per l'infanzia statale"):
-            st.write(SoloPrimariaConcS)
-    with coltz3:
-        # GRAFICO ISCRITTI ALLA SCUOLA SECONDARIA STATALE
-        st.subheader("Iscritti (%) alla scuola secondaria di I grado statale")
-        # crea grafico
-        SoloSECConc = alt.Chart(SoloSecondariaConcS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#B6B0FF"),
-                                                              strokeWidth=2.5, color="#B6B0FF"
-                                                              ).encode(alt.X("PLESSO"),
-                                                                       alt.Y("Percentuale")).interactive()
-        text = SoloSECConc.mark_text(
-            align="center",
-            baseline="middle",
-            dy=-7).encode(text="Percentuale")
-        # stampa grafico + label
-        st.altair_chart(SoloSECConc+text, use_container_width=True)
-        with st.expander("Tabella iscritti alla scuola secondaria di I grado statale"):
-            st.write(SoloSecondariaConcS)
 
 quartaRiga = st.container()
 with quartaRiga:
@@ -192,11 +184,11 @@ with quartaRiga:
                         loc="upper left")
         st.pyplot(figRapp, use_container_width=True)
         with st.expander("Tabella rapporto (%) tra scuole paritarie e statali"):
-            st.write(RapportoScuoleStaParIS)
+            st.write(RapportoParitarieStataliS)
 
     with colqr2:
         # GRAFICO RAPPORTO TRA SCUOLA INFANZIA STATALE E PARITARIA
-        st.subheader("Rapporto (%) tra la scuola infanzia statale e quella paritaria")
+        st.subheader("Rapporto (%) tra le scuole infanzia statali e quelle paritarie")
         figRapp2, axesRapp2 = plt.subplots()
         axesRapp2.pie(x=RapportoScuoleStaParIS["Percentuale"], autopct='%1.1f%%', colors=colorFasceDue, pctdistance=1.14,
                      wedgeprops={"edgecolor": "white", "linewidth": 1})
@@ -204,11 +196,11 @@ with quartaRiga:
         axesRapp2.legend(ncol=1, labels=RapportoScuoleStaParIS["Tipologia"], title="Legenda", bbox_to_anchor=(1, 1),
                         loc="upper left")
         st.pyplot(figRapp2, use_container_width=True)
-        with st.expander("Tabella rapporto (%) tra scuola infanzia statale e paritaria"):
+        with st.expander("Tabella rapporto (%) tra scuole infanzia statali e paritarie"):
             st.write(RapportoScuoleStaParIS)
     with colqr3:
         # GRAFICO RAPPORTO TRA SCUOLA PRIMARIA STATALE E PARITARIA
-        st.subheader("Rapporto (%) tra la scuola primaria statale e quella paritaria")
+        st.subheader("Rapporto (%) tra le scuole primarie statali e quelle paritarie")
         figRapp, axesRapp = plt.subplots()
         axesRapp.pie(x=RapportoScuoleStaParPS["Percentuale"], autopct='%1.1f%%', colors=colorFasceDue, pctdistance=1.14,
                      wedgeprops={"edgecolor": "white", "linewidth": 1})
@@ -216,11 +208,11 @@ with quartaRiga:
         axesRapp.legend(ncol=1, labels=RapportoScuoleStaParPS["Tipologia"], title="Legenda", bbox_to_anchor=(1, 1),
                         loc="upper left")
         st.pyplot(figRapp, use_container_width=True)
-        with st.expander("Tabella rapporto (%) tra scuola primaria statale e paritaria"):
+        with st.expander("Tabella rapporto (%) tra scuole primarie statali e paritarie"):
             st.write(RapportoScuoleStaParPS)
     with colqr4:
         # GRAFICO RAPPORTO TRA SCUOLA SECONDARIA DI I GRADO STATALE E PARITARIA
-        st.subheader("Rapporto (%) tra scuola sec. di I grado statale e paritaria")
+        st.subheader("Rapporto (%) tra scuole sec. di I grado statali e paritarie")
         figRapp, axesRapp = plt.subplots()
         axesRapp.pie(x=RapportoScuoleStaParSS["Percentuale"], autopct='%1.1f%%', colors=colorFasceDue, pctdistance=1.14,
                      wedgeprops={"edgecolor": "white", "linewidth": 1})
@@ -228,7 +220,7 @@ with quartaRiga:
         axesRapp.legend(ncol=1, labels=RapportoScuoleStaParSS["Tipologia"], title="Legenda", bbox_to_anchor=(1, 1),
                         loc="upper left")
         st.pyplot(figRapp, use_container_width=True)
-        with st.expander("Tabella rapport (%) tra scuola sec. di I grado statale e paritaria"):
+        with st.expander("Tabella rapport (%) tra scuole sec. di I grado statali e paritarie"):
             st.write(RapportoScuoleStaParSS)
 
 
