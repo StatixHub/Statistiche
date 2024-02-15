@@ -1,5 +1,5 @@
 altair
-streamlit
+streamlit==0.101.0
 seaborn
 squarify
 matplotlib
