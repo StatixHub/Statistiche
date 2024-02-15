@@ -2,5 +2,5 @@ altair==5.1.2
 streamlit==1.31.1
 seaborn==0.12.2
 squarify==0.4.3
-
+matplotlib==3.8.0
 plotly_express
