@@ -123,23 +123,17 @@ with (terzaRiga):
             # DISTRIBUZIONE FAMIGLIE CON UN SOLO COMPONENTE
             st.subheader("Distribuzione (%) famiglie con un solo componente nei quartieri")
 
-            FAM1 = alt.Chart(SoloQuartieriS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#70B0E0"),
-                                                              strokeWidth=2, color="#70B0E0"
-                                                              ).encode(alt.X("Quartiere"),
-                                                                       alt.Y("Percentuale 0-17 anni", title="Percentuale"),
-                                                                       alt.Tooltip(["Percentuale 0-17 anni", "Quartiere"])).interactive()
+            figFAM1C = px.bar(SoloQuartieriS, x="Quartiere", y=["Percentuale 0-17 anni", "Percentuale 18-64 anni",
+                                                                 "Percentuale sopra 65 anni"],
+                               color_discrete_sequence=(colorFasce), labels={"value": "Percentuale"}, height=450,
+                               text_auto=True)
+            # Imposta barmode su "group" per avere colonne affiancate
+            figFAM1C.update_layout(barmode="group", bargap=0.1, legend=dict(x=0, y=1.2), legend_orientation="h")
 
-            FAM2 = alt.Chart(SoloQuartieriS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#9B0065"),
-                                                       strokeWidth=2, color="#9B0065"
-                                                       ).encode(alt.X("Quartiere"),
-                                                                alt.Y("Percentuale 18-64 anni")).interactive()
+            # Allarga le dimensioni delle barre
+            figFAM1C.update_traces(width=0.30)
 
-            FAM3 = alt.Chart(SoloQuartieriS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#B6B0FF"),
-                                                       strokeWidth=2, color="#B6B0FF"
-                                                       ).encode(alt.X("Quartiere"),
-                                                                alt.Y("Percentuale sopra 65 anni")).interactive()
-            FAM = FAM1+FAM2+FAM3
 
-            FAM.encode()
+            figFAM1C.update_xaxes(tickangle=270)
+            st.plotly_chart(figFAM1C, use_container_width=True)
 
-            st.altair_chart(FAM, use_container_width=True)
