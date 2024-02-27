@@ -48,7 +48,6 @@ st.sidebar.markdown("# Scuole e asili")
 
 colorFasce= ["#6b007b", "#70B0E0","#9B0065", "#B6B0FF"]
 colorFasceDue= ["#70B0E0","#486871"]
-
 primaRiga = st.container()
 with primaRiga:
     #configura numero colonne
@@ -119,15 +118,15 @@ with secondaRiga:
         with st.expander("Tabella iscritti alle scuole primarie paritarie"):
             st.write(SPrimariePS)
     with colsr3:
-        # GRAFICO ISCRITTI ALLA SCUOLA SECONDARIA DI SECONDO GRADO
-        st.subheader("Iscritti (%) alle scuole secondarie di secondo grado paritarie")
+        # GRAFICO ISCRITTI ALLA SCUOLA SECONDARIA DI I GRADO PARITARIE
+        st.subheader("Iscritti (%) alle scuole secondarie di I grado paritarie")
         # crea grafico
         SSIGSP = alt.Chart(SSecondarieIGradoPS).mark_bar(color="#B6B0FF").encode(alt.X("PLESSO"), alt.Y("Percentuale"))
         # label
         textSSIGSP = SSIGSP.mark_text(align="center", baseline="bottom").encode(text="Percentuale")
         # stampa grafico + label
         st.altair_chart(SSIGSP + textSSIGSP, use_container_width=True)
-        with st.expander("Tabella iscritti alle scuole secondarie di secondo grado paritarie"):
+        with st.expander("Tabella iscritti alle scuole secondarie di I grado paritarie"):
             st.write(SSecondarieIGradoPS)
 
 terzaRiga = st.container()
@@ -259,4 +258,3 @@ with sestaRiga:
         st.pyplot(figRapp2, use_container_width=True)
         with st.expander("Tabella rapporto ammessi al nido"):
             st.write(ANAttesaS)
-
