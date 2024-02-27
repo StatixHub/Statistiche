@@ -22,7 +22,7 @@ RapportoAbMinS = pd.read_csv("Destinazione/CSV/RapportoAbMin.csv")
 TotaleNuoviNatiPDS = pd.read_csv("Destinazione/CSV/TotaleNuoviNatiPD.csv")
 NuoviNatiQuarS = pd.read_csv("Destinazione/CSV/NuoviNatiQuar.csv")
 Minori017QuartS = pd.read_csv("Destinazione/CSV/Minori017Quart.csv")
-FamiglieS= pd.read_csv("Destinazione/CSV/Minori017Quart.csv")
+FamiglieS= pd.read_csv("Destinazione/CSV/Famiglie.csv")
 MF017S = pd.read_csv("Destinazione/CSV/MF017.csv")
 MQuartieriS=pd.read_csv("Destinazione/CSV/MQuartieri.csv")
 FQuartieriS=pd.read_csv("Destinazione/CSV/FQuartieri.csv")
@@ -78,7 +78,6 @@ with ((primaRiga)):
     with colpr2:
         #NUOVI NATI NELL'ANNO
         st.subheader("Nuovi nati nell'anno e residenti a Lecco")
-        st.write("Ultimi 12 mesi")
         st.write(TotaleNuoviNatiPDS)
         #DISTRIBUZIONE MINORI NATI NEI QUARTIERI
         st.subheader("Distribuzione (%) nei quartieri")
@@ -92,6 +91,9 @@ with ((primaRiga)):
         st.subheader("Distribuzione (%) dei minori nei quartieri")
         # crea grafico
         M017Q = alt.Chart(Minori017QuartS).mark_bar(color="#990066").encode(alt.X("Quartiere"), alt.Y("Percentuale")).interactive()
+        #precedente grafico in linea e non bar
+        # M017Q = alt.Chart(Minori017QuartS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#990066"), strokeWidth=2.5, color="#990066"
+        #                                              ).encode(alt.X("Quartiere"), alt.Y("Percentuale")).interactive()
         text = M017Q.mark_text(
             align="center",
             baseline="middle",
@@ -118,9 +120,8 @@ with secondaRiga:
         # GRAFICO DISTRIBUZIONE FEMMINE NEI QUARTIERI
         st.subheader("Distribuzione (%) femmine nei quartieri")
         # crea grafico
-        FQ017 = alt.Chart(FQuartieriS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#FF0066"),
-                                                     strokeWidth=2, color="#FF0066"
-                                                     ).encode(alt.X("Quartiere"), alt.Y("Percentuale femmine")).interactive()
+        FQ017 = alt.Chart(FQuartieriS).mark_bar(color="#FF0066").encode(alt.X("Quartiere"),
+                                                                        alt.Y("Percentuale femmine")).interactive()
         # label
         text = FQ017.mark_text(
             align="center",
@@ -131,9 +132,8 @@ with secondaRiga:
     with colsr3:
         # GRAFICO DISTRIBUZIONE MASCHI NEI QUARTIERI
         st.subheader("Distribuzione (%) maschi nei quartieri")
-        MQ017 = alt.Chart(MQuartieriS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#33CCCC"),
-                                                 strokeWidth=2, color="#33CCCC"
-                                                 ).encode(alt.X("Quartiere"), alt.Y("Percentuale maschi")).interactive()
+        MQ017 = alt.Chart(MQuartieriS).mark_bar(color="#33CCCC").encode(alt.X("Quartiere"),
+                                                                        alt.Y("Percentuale maschi")).interactive()
         text = MQ017.mark_text(
             align="center",
             baseline="middle",
@@ -143,19 +143,14 @@ with secondaRiga:
     with colsr4:
         # GRAFICO RAPPORTO MASCHI E FEMMINE NEI QUARTIERI
         st.subheader("Rapporto (%) maschi e femmine nei quartieri")
-        MFQ0171 = alt.Chart(MFQuartieriS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#33CCCC"),
-                                                 strokeWidth=2, color="#33CCCC"
-                                                 ).encode(alt.X("Quartiere"), alt.Y("Percentuale maschi")).interactive()
-        MFQ0172 = alt.Chart(MFQuartieriS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#FF0066"),
-                                                    strokeWidth=2, color="#FF0066"
-                                                    ).encode(alt.X("Quartiere"),
-                                                             alt.Y("Percentuale femmine")).interactive()
-        # stampa grafico + label
-        st.altair_chart(MFQ0171 + MFQ0172, use_container_width=True)
-        # figMFQ = px.bar(MFQuartieriS, x="Quartiere", y=["Percentuale maschi", "Percentuale femmine"], color_discrete_sequence=(colorMF), labels={"value": "Percentuale"}, text_auto=True)
-        # figMFQ.update_layout(legend=dict(x=0, y=1.2), legend_orientation="h")
-        # figMFQ.update_xaxes(tickangle=270)
-        # st.plotly_chart(figMFQ, use_container_width=True)
+        figMFQ017 = px.bar(MFQuartieriS, x="Quartiere",
+                         y=["Percentuale maschi", "Percentuale femmine"],
+                         color_discrete_sequence=(colorMF), labels={"value": "Percentuale"}, text_auto=True)
+        figMFQ017.update_layout(legend=dict(x=0, y=1.3), legend_orientation="h")
+        figMFQ017.update_xaxes(tickangle=270)
+
+        st.plotly_chart(figMFQ017, use_container_width=True)
+
 terzaRiga = st.container()
 with (terzaRiga):
     st.subheader("Rapporto (%) maschi e femmine per fasce di età")
@@ -322,6 +317,11 @@ with quintaRiga:
         # crea grafico
         STRQ017 = alt.Chart(Stranieri017QuartS).mark_bar(color="#3399FF").encode(alt.X("Quartiere"),
                                                                             alt.Y("Percentuale")).interactive()
+        #VECCHIO grafico a linea
+        # STRQ017 = alt.Chart(Stranieri017QuartS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#3399FF"),
+        #                                          strokeWidth=2, color="#3399FF"
+        #                                          ).encode(alt.X("Quartiere"),
+        #                                                   alt.Y("Percentuale")).interactive()
         text = STRQ017.mark_text(
             align="center",
             baseline="middle",
