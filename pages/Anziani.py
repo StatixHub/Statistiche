@@ -64,6 +64,10 @@ with primaRiga:
         st.subheader("Distribuzione (%) degli over 65 nei quartieri")
         ANQ = alt.Chart(AnzianiQuartS).mark_bar(color="#990066").encode(alt.X("Quartiere"),
                                                                            alt.Y("Percentuale")).interactive()
+        #VECCHIO GRAFICO IN LINEA
+        # ANQ = alt.Chart(AnzianiQuartS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#990066"),
+        #                                         strokeWidth=2, color="#990066"
+        #                                         ).encode(alt.X("Quartiere"), alt.Y("Percentuale")).interactive()
 
         text = ANQ.mark_text(
             align="center",
@@ -90,9 +94,7 @@ with secondaRiga:
     with colsr2:
         # GRAFICO DISTRIBUZIONE FEMMINE NEI QUARTIERI
         st.subheader("Distribuzione (%) delle femmine nei quartieri")
-        FANQ = alt.Chart(FQuartieri65S).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#FF0066"),
-                                                    strokeWidth=2, color="#FF0066"
-                                                    ).encode(alt.X("Quartiere"),
+        FANQ = alt.Chart(FQuartieri65S).mark_bar(color="#FF0066").encode(alt.X("Quartiere"),
                                                              alt.Y("Percentuale femmine")).interactive()
 
         text = FANQ.mark_text(
@@ -104,9 +106,7 @@ with secondaRiga:
     with colsr3:
         # GRAFICO DISTRIBUZIONE MASCHI NEI QUARTIERI
         st.subheader("Distribuzione (%) dei maschi nei quartieri")
-        MANQ = alt.Chart(MQuartieri65S).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#33CCCC"),
-                                                    strokeWidth=2, color="#33CCCC"
-                                                    ).encode(alt.X("Quartiere"),
+        MANQ = alt.Chart(MQuartieri65S).mark_bar(color="#33CCCC").encode(alt.X("Quartiere"),
                                                              alt.Y("Percentuale maschi")).interactive()
 
         text = MANQ.mark_text(
@@ -118,22 +118,15 @@ with secondaRiga:
     with colsr4:
         # GRAFICO RAPPORTO MASCHI E FEMMINE NEI QUARTIERI
         st.subheader("Rapporto (%) maschi e femmine nei quartieri")
-        MFQAN1 = alt.Chart(MFQuartieri65S).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#33CCCC"),
-                                                    strokeWidth=2, color="#33CCCC"
-                                                    ).encode(alt.X("Quartiere"),
-                                                             alt.Y("Percentuale maschi")).interactive()
-        MFQAN2 = alt.Chart(MFQuartieri65S).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#FF0066"),
-                                                    strokeWidth=2, color="#FF0066"
-                                                    ).encode(alt.X("Quartiere"),
-                                                             alt.Y("Percentuale femmine")).interactive()
-        # stampa grafico + label
-        st.altair_chart(MFQAN1 + MFQAN2, use_container_width=True)
-        # figMFQAN = px.bar(MFQuartieri65S, x="Quartiere", y=["Percentuale maschi", "Percentuale femmine"],
-        #                 color_discrete_sequence=(colorMF), height=350,
-        #                 labels={"value": "Percentuale"}, text_auto=True)
-        # figMFQAN.update_layout(legend=dict(x=0, y=2), legend_orientation="h")
-        # figMFQAN.update_xaxes(tickangle=270)
-        # st.plotly_chart(figMFQAN, use_container_width=True)
+        figMFQ65 = px.bar(MFQuartieri65S, x="Quartiere",
+                            y=["Percentuale maschi", "Percentuale femmine"],
+                            color_discrete_sequence=(colorMF), labels={"value": "Percentuale"}, text_auto=True)
+        figMFQ65.update_layout(legend=dict(x=0, y=1.3), legend_orientation="h")
+        figMFQ65.update_xaxes(tickangle=270)
+
+        st.plotly_chart(figMFQ65, use_container_width=True)
+
+
 terzaRiga = st.container()
 with terzaRiga:
     #configura numero colonne
@@ -154,6 +147,11 @@ with terzaRiga:
         st.subheader("Distribuzione (%) degli stranieri nei quartieri")
         SANQ = alt.Chart(StranieriQuart65S).mark_bar(color="#3399FF").encode(alt.X("Quartiere"),
                                                                         alt.Y("Percentuale")).interactive()
+        #GRAFICO VECCHIO IN LINEA
+        # SANQ = alt.Chart(StranieriQuart65S).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#3399FF"),
+        #                                                 strokeWidth=2, color="#3399FF"
+        #                                                 ).encode(alt.X("Quartiere"),
+        #                                                          alt.Y("Percentuale")).interactive()
 
         text = SANQ.mark_text(
             align="center",
