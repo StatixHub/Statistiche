@@ -39,7 +39,7 @@ ANAttesaS = pd.read_csv("./Destinazione/CSV/ANAttesa.csv")
 st.set_page_config(layout="wide")
 #set titolo applicazione
 st.title("StatiX")
-st.write("App per la visualizzazione dei dati statistici relativi al Comune di Lecco (minori, adulti e over 65 anni, scuole e asili)")
+st.write("App per la visualizzazione dei dati statistici relativi al Comune di Lecco (scuole e asili) - settembre 2023")
 #crea il markdown minori
 st.markdown("# Scuole e asili")
 st.subheader("***Scuole***")
