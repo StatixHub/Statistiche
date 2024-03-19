@@ -18,36 +18,40 @@ import seaborn as sb
 import plotly.graph_objects as go
 
 
-SInfanziaPS = pd.read_csv("./Destinazione/CSV/SInfanziaP.csv")
-SPrimariePS = pd.read_csv("./Destinazione/CSV/SPrimarieP.csv")
-SSecondarieIGradoPS = pd.read_csv("./Destinazione/CSV/SSecondarieIGradoP.csv")
-ISTLecco1S = pd.read_csv("./Destinazione/CSV/ISTLecco1.csv")
-ISTLecco2S = pd.read_csv("./Destinazione/CSV/ISTLecco2.csv")
-ISTLecco3S = pd.read_csv("./Destinazione/CSV/ISTLecco3.csv")
-SoloInfanziaConcS = pd.read_csv("./Destinazione/CSV/SoloInfanziaConc.csv")
-SoloPrimariaConcS = pd.read_csv("./Destinazione/CSV/SoloPrimariaConc.csv")
-SoloSecondariaConcS = pd.read_csv("./Destinazione/CSV/SoloSecondariaConc.csv")
-RapportoScuoleStaParIS = pd.read_csv("./Destinazione/CSV/RapportoScuoleStaParI.csv")
-RapportoScuoleStaParPS = pd.read_csv("./Destinazione/CSV/RapportoScuoleStaParP.csv")
-RapportoScuoleStaParSS = pd.read_csv("./Destinazione/CSV/RapportoScuoleStaParS.csv")
-RapportoParitarieStataliS = pd.read_csv("./Destinazione/CSV/RapportoParitarieStatali.csv")
-RapportoAsiloMinoriS = pd.read_csv("./Destinazione/CSV/RapportoAsiloMinori.csv")
-ANAmmessiS = pd.read_csv("./Destinazione/CSV/ANAmmessi.csv")
-ANAttesaS = pd.read_csv("./Destinazione/CSV/ANAttesa.csv")
+SInfanziaPS = pd.read_csv("../Destinazione/CSV/SInfanziaP.csv")
+SPrimariePS = pd.read_csv("../Destinazione/CSV/SPrimarieP.csv")
+SSecondarieIGradoPS = pd.read_csv("../Destinazione/CSV/SSecondarieIGradoP.csv")
+ISTLecco1S = pd.read_csv("../Destinazione/CSV/ISTLecco1.csv")
+ISTLecco2S = pd.read_csv("../Destinazione/CSV/ISTLecco2.csv")
+ISTLecco3S = pd.read_csv("../Destinazione/CSV/ISTLecco3.csv")
+SoloInfanziaConcS = pd.read_csv("../Destinazione/CSV/SoloInfanziaConc.csv")
+SoloPrimariaConcS = pd.read_csv("../Destinazione/CSV/SoloPrimariaConc.csv")
+SoloSecondariaConcS = pd.read_csv("../Destinazione/CSV/SoloSecondariaConc.csv")
+RapportoScuoleStaParIS = pd.read_csv("../Destinazione/CSV/RapportoScuoleStaParI.csv")
+RapportoScuoleStaParPS = pd.read_csv("../Destinazione/CSV/RapportoScuoleStaParP.csv")
+RapportoScuoleStaParSS = pd.read_csv("../Destinazione/CSV/RapportoScuoleStaParS.csv")
+RapportoParitarieStataliS = pd.read_csv("../Destinazione/CSV/RapportoParitarieStatali.csv")
+RapportoAsiloMinoriS = pd.read_csv("../Destinazione/CSV/RapportoAsiloMinori.csv")
+AsiliComunaliS= pd.read_csv("../Destinazione/CSV/AsiliComunali.csv")
+AsiliLeccoS = pd.read_csv("../Destinazione/CSV/AsiliLecco.csv")
+
+
 
 #set pagina su tutta l'ampiezza
 st.set_page_config(layout="wide")
 #set titolo applicazione
 st.title("StatiX")
-st.write("App per la visualizzazione dei dati statistici relativi al Comune di Lecco (scuole e asili) - settembre 2023")
+st.write("App per la visualizzazione dei dati statistici relativi al Comune di Lecco (minori, adulti e over 65 anni, scuole e asili)")
 #crea il markdown minori
 st.markdown("# Scuole e asili")
-st.subheader("***Scuole***")
+st.subheader("***Scuole - dato a settembre 2023***")
 #crea la sidebar con i markdown
 st.sidebar.markdown("# Scuole e asili")
 
 colorFasce= ["#6b007b", "#70B0E0","#9B0065", "#B6B0FF"]
 colorFasceDue= ["#70B0E0","#486871"]
+colorAsiliLecco= ["#FF0066", "#FF6699", "#CC3366", "#993333", "#CC3333", "#990000", "#660000", "#993300", "#CC6633", "#CC9933"]
+
 primaRiga = st.container()
 with primaRiga:
     #configura numero colonne
@@ -227,34 +231,41 @@ quintaRiga = st.container()
 with quintaRiga:
     colqn1, colqn2 = st.columns(2)
     with colqn1:
-        st.subheader("***Asili***")
+        st.subheader("***Asili - dato a dicembre 2023***")
 
 sestaRiga = st.container()
 with sestaRiga:
     #configura numero colonne
     colst1, colst2 = st.columns(2, gap="medium")
     with colst1:
-        # GRAFICO RAPPORTO ISCRITTI AL NIDO
-        st.subheader("Rapporto (%) iscritti al nido")
-        figRapp, axesRapp = plt.subplots()
-        axesRapp.pie(x=ANAmmessiS["Percentuale"], autopct='%1.1f%%', colors=colorFasce, pctdistance=1.14,
-                     wedgeprops={"edgecolor": "white", "linewidth": 1})
-        axesRapp.axis('equal')  # Rispetto dell'aspect ratio
-        axesRapp.legend(ncol=1, labels=ANAmmessiS["Nido"], title="Legenda", bbox_to_anchor=(1, 1),
-                        loc="upper left")
-        st.pyplot(figRapp, use_container_width=True)
-        with st.expander("Tabella rapporto iscritti al nido"):
-            st.write(ANAmmessiS)
+        # GRAFICO ISCRITTI ASILI NIDO COMUNALI
+        st.subheader("Iscrizioni asili nido comunali")
+        asilicomunali = px.bar(AsiliComunaliS, x="Nido", y=["Percentuale ammessi", "Percentuale in attesa"],
+                               color_discrete_sequence=["#CC3366", "#FF6699"],
+                               barmode='group', height=400, text="value")
+
+        # Aggiungi etichette e layout
+        asilicomunali.update_traces(textfont_color='white', textfont_size=12, textangle=0, textposition="inside", cliponaxis=False)
+        asilicomunali.update_layout(barmode="stack", xaxis_tickangle=-45,
+                                    xaxis_title='Nido', yaxis_title='Percentuale')
+
+        # Mostra il grafico
+        st.plotly_chart(asilicomunali, use_container_width=True)
+
+        # Aggiungi un espansore per visualizzare i dati tabulari
+        with st.expander("Tabella iscritti asili nido comunali"):
+            st.write(AsiliComunaliS)
+
 
     with colst2:
-        # GRAFICO RAPPORTO AMMESSI AL NIDO
-        st.subheader("Rapporto (%) ammessi al nido")
-        figRapp2, axesRapp2 = plt.subplots()
-        axesRapp2.pie(x=ANAttesaS["Percentuale"], autopct='%1.1f%%', colors=colorFasce, pctdistance=1.14,
+        # GRAFICO ISCRIZIONI NIDI CITTA' DI LECCO
+        st.subheader("Iscrizioni asili nido città di Lecco")
+        figAlecco, axesALecco = plt.subplots()
+        axesALecco.pie(x=AsiliLeccoS["Percentuale frequentanti"], autopct='%1.1f%%', colors=colorAsiliLecco, pctdistance=1.14,
                      wedgeprops={"edgecolor": "white", "linewidth": 1})
-        axesRapp2.axis('equal')  # Rispetto dell'aspect ratio
-        axesRapp2.legend(ncol=1, labels=ANAttesaS["Nido"], title="Legenda", bbox_to_anchor=(1, 1),
+        axesALecco.axis('equal')  # Rispetto dell'aspect ratio
+        axesALecco.legend(ncol=1, labels=AsiliLeccoS["Nido"], title="Legenda", bbox_to_anchor=(1, 1),
                         loc="upper left")
-        st.pyplot(figRapp2, use_container_width=True)
-        with st.expander("Tabella rapporto ammessi al nido"):
-            st.write(ANAttesaS)
+        st.pyplot(figAlecco, use_container_width=True)
+        with st.expander("Tabella iscritti asili nido città di Lecco"):
+            st.write(AsiliLeccoS)
