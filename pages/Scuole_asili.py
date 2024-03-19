@@ -18,22 +18,22 @@ import seaborn as sb
 import plotly.graph_objects as go
 
 
-SInfanziaPS = pd.read_csv("../Destinazione/CSV/SInfanziaP.csv")
-SPrimariePS = pd.read_csv("../Destinazione/CSV/SPrimarieP.csv")
-SSecondarieIGradoPS = pd.read_csv("../Destinazione/CSV/SSecondarieIGradoP.csv")
-ISTLecco1S = pd.read_csv("../Destinazione/CSV/ISTLecco1.csv")
-ISTLecco2S = pd.read_csv("../Destinazione/CSV/ISTLecco2.csv")
-ISTLecco3S = pd.read_csv("../Destinazione/CSV/ISTLecco3.csv")
-SoloInfanziaConcS = pd.read_csv("../Destinazione/CSV/SoloInfanziaConc.csv")
-SoloPrimariaConcS = pd.read_csv("../Destinazione/CSV/SoloPrimariaConc.csv")
-SoloSecondariaConcS = pd.read_csv("../Destinazione/CSV/SoloSecondariaConc.csv")
-RapportoScuoleStaParIS = pd.read_csv("../Destinazione/CSV/RapportoScuoleStaParI.csv")
-RapportoScuoleStaParPS = pd.read_csv("../Destinazione/CSV/RapportoScuoleStaParP.csv")
-RapportoScuoleStaParSS = pd.read_csv("../Destinazione/CSV/RapportoScuoleStaParS.csv")
-RapportoParitarieStataliS = pd.read_csv("../Destinazione/CSV/RapportoParitarieStatali.csv")
-RapportoAsiloMinoriS = pd.read_csv("../Destinazione/CSV/RapportoAsiloMinori.csv")
-AsiliComunaliS= pd.read_csv("../Destinazione/CSV/AsiliComunali.csv")
-AsiliLeccoS = pd.read_csv("../Destinazione/CSV/AsiliLecco.csv")
+SInfanziaPS = pd.read_csv("Destinazione/CSV/SInfanziaP.csv")
+SPrimariePS = pd.read_csv("Destinazione/CSV/SPrimarieP.csv")
+SSecondarieIGradoPS = pd.read_csv("Destinazione/CSV/SSecondarieIGradoP.csv")
+ISTLecco1S = pd.read_csv("Destinazione/CSV/ISTLecco1.csv")
+ISTLecco2S = pd.read_csv("Destinazione/CSV/ISTLecco2.csv")
+ISTLecco3S = pd.read_csv("Destinazione/CSV/ISTLecco3.csv")
+SoloInfanziaConcS = pd.read_csv("Destinazione/CSV/SoloInfanziaConc.csv")
+SoloPrimariaConcS = pd.read_csv("Destinazione/CSV/SoloPrimariaConc.csv")
+SoloSecondariaConcS = pd.read_csv("Destinazione/CSV/SoloSecondariaConc.csv")
+RapportoScuoleStaParIS = pd.read_csv("Destinazione/CSV/RapportoScuoleStaParI.csv")
+RapportoScuoleStaParPS = pd.read_csv("Destinazione/CSV/RapportoScuoleStaParP.csv")
+RapportoScuoleStaParSS = pd.read_csv("Destinazione/CSV/RapportoScuoleStaParS.csv")
+RapportoParitarieStataliS = pd.read_csv("Destinazione/CSV/RapportoParitarieStatali.csv")
+RapportoAsiloMinoriS = pd.read_csv("Destinazione/CSV/RapportoAsiloMinori.csv")
+AsiliComunaliS= pd.read_csv("Destinazione/CSV/AsiliComunali.csv")
+AsiliLeccoS = pd.read_csv("Destinazione/CSV/AsiliLecco.csv")
 
 
 
