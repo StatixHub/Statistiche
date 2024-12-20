@@ -231,7 +231,7 @@ quintaRiga = st.container()
 with quintaRiga:
     colqn1, colqn2 = st.columns(2)
     with colqn1:
-        st.subheader("***Asili - dato a dicembre 2023***")
+        st.subheader("***Asili - dato a dicembre 2024***")
 
 sestaRiga = st.container()
 with sestaRiga:
