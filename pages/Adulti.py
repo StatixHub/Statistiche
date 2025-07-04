@@ -30,7 +30,7 @@ StranieriQuart1864S = pd.read_csv("./Destinazione/CSV/StranieriQuart1864.csv")
 st.set_page_config(layout="wide")
 #set titolo applicazione
 st.title("StatiX")
-st.write("App per la visualizzazione dei dati statistici relativi al Comune di Lecco (minori, adulti e over 65 anni, scuole e asili) - statistiche a cura dell'ufficio SIT - aggiornate il 31/05/2025")
+st.write("App per la visualizzazione dei dati statistici relativi al Comune di Lecco (minori, adulti e over 65 anni, scuole e asili) - statistiche a cura dell'ufficio SIT - aggiornate il 30/06/2025")
 #crea il markdown adulti
 st.markdown("# Adulti")
 #crea la sidebar con i markdown
