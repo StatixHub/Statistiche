@@ -42,15 +42,6 @@ colorMF= ["#FF0066", "#33CCCC"]
 colorFasce= ["#D69EC4", "#B772A1", "#C42B91", "#912F70", "#990066"]
 colorFasceSTR= ["#C0E8FB", "#6ECFF6", "#0093D7", "#0072B9", "#214297"]
 
-
-import altair as alt
-import streamlit as st
-import pandas as pd
-
-# caricamento dati di esempio (sostituisci con i tuoi CSV)
-RapportoAbAduS = pd.read_csv("./Destinazione/CSV/RapportoAbAdu.csv")
-AdultiQuartS = pd.read_csv("./Destinazione/CSV/AdultiQuart.csv")
-
 # contenitore prima riga
 primaRiga = st.container()
 with primaRiga:
@@ -199,6 +190,7 @@ with terzaRiga:
         st.altair_chart(SADQ + text, use_container_width=True)
         with st.expander("Tabella distribuzione (%) degli stranieri nei quartieri"):
             st.write(StranieriQuart1864S)
+
 
 
 
