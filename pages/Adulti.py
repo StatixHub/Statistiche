@@ -15,6 +15,8 @@ import plotly.express as px
 import squarify
 import seaborn as sb
 import altair as alt
+alt.renderers.set_embed_options(renderer='svg')
+
 
 #importa i db dai csv
 RapportoAbAduS = pd.read_csv("./Destinazione/CSV/RapportoAbAdu.csv")
@@ -183,6 +185,7 @@ with terzaRiga:
         st.altair_chart(SADQ + text, use_container_width=True)
         with st.expander("Tabella distribuzione (%) degli stranieri nei quartieri"):
             st.write(StranieriQuart1864S)
+
 
 
 
