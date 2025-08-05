@@ -49,18 +49,20 @@ primaRiga = st.container()
 with primaRiga:
     #configura numero colonne
     colpr1, colpr2 = st.columns(2, gap="medium")
+    
     with colpr1:
         df = pd.DataFrame({'Tipologia': ['A', 'B', 'C'], 'Percentuale': [10, 20, 30]})
 
-    chart = alt.Chart(df).mark_bar(color="#FF3366").encode(
-        x=alt.X('Tipologia:N'),
-        y=alt.Y('Percentuale:Q')
-    )
+        chart = alt.Chart(df).mark_bar(color="#FF3366").encode(
+            x=alt.X('Tipologia:N'),
+            y=alt.Y('Percentuale:Q')
+        )
 
-    st.altair_chart(chart, use_container_width=True)
+        st.altair_chart(chart, use_container_width=True)
 
-    st.write("Tabella dati")
-    st.write(df)
+        st.write("Tabella dati")
+        st.write(df)
+
 
     with colpr2:
     #GRAFICO DISTRIBUZIONE ADULTI NEI QUARTIERI
@@ -170,6 +172,7 @@ with terzaRiga:
         st.altair_chart(SADQ + text, use_container_width=True)
         with st.expander("Tabella distribuzione (%) degli stranieri nei quartieri"):
             st.write(StranieriQuart1864S)
+
 
 
 
