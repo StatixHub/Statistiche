@@ -54,7 +54,7 @@ with primaRiga:
         st.subheader("Rapporto (%) tra adulti e totale abitanti")
         st.write(RapportoAbAduS)
 
-        # crea grafico a barre Altair con renderer svg per Firefox
+        # grafico a barre con renderer SVG
         RAAD = alt.Chart(RapportoAbAduS).mark_bar(color="#990066").encode(
             alt.X("Tipologia:N", title="Tipologia"),
             alt.Y("Percentuale:Q", title="Percentuale (%)")
@@ -64,42 +64,55 @@ with primaRiga:
             width='container'
         )
 
-        # label testuali
-        textRAAD = RAAD.mark_text(
+        # testo sulle barre (nuovo chart separato con svg)
+        textRAAD = alt.Chart(RapportoAbAduS).mark_text(
             align="center",
             baseline="bottom",
             dy=-5
         ).encode(
+            x=alt.X("Tipologia:N"),
+            y=alt.Y("Percentuale:Q"),
             text="Percentuale:Q"
+        ).configure_view(
+            render='svg'
         )
 
-        # stampa grafico + label
+        # stampa grafico + testo
         st.altair_chart(RAAD + textRAAD, use_container_width=True)
 
     with colpr2:
         # GRAFICO DISTRIBUZIONE ADULTI NEI QUARTIERI
         st.subheader("Distribuzione (%) degli adulti nei quartieri")
 
-        # crea grafico
+        # grafico a barre con renderer svg
         ADQ = alt.Chart(AdultiQuartS).mark_bar(color="#990066").encode(
             alt.X("Quartiere:N", title="Quartiere"),
             alt.Y("Percentuale:Q", title="Percentuale (%)")
-        ).interactive()
+        ).interactive().configure_view(
+            render='svg'
+        ).properties(
+            width='container'
+        )
 
-        # label testuali
-        text = ADQ.mark_text(
+        # testo sulle barre
+        text = alt.Chart(AdultiQuartS).mark_text(
             align="center",
             baseline="middle",
             dy=-7
         ).encode(
+            x=alt.X("Quartiere:N"),
+            y=alt.Y("Percentuale:Q"),
             text="Percentuale:Q"
+        ).configure_view(
+            render='svg'
         )
 
-        # stampa grafico + label
+        # stampa grafico + testo
         st.altair_chart(ADQ + text, use_container_width=True)
 
         with st.expander("Tabella distribuzione (%) adulti nei quartieri"):
             st.write(AdultiQuartS)
+
 
 
 secondaRiga = st.container()
@@ -185,6 +198,7 @@ with terzaRiga:
         st.altair_chart(SADQ + text, use_container_width=True)
         with st.expander("Tabella distribuzione (%) degli stranieri nei quartieri"):
             st.write(StranieriQuart1864S)
+
 
 
 
