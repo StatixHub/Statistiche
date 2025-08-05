@@ -49,20 +49,16 @@ primaRiga = st.container()
 with primaRiga:
     #configura numero colonne
     colpr1, colpr2 = st.columns(2, gap="medium")
-    
     with colpr1:
-        df = pd.DataFrame({'Tipologia': ['A', 'B', 'C'], 'Percentuale': [10, 20, 30]})
-
-        chart = alt.Chart(df).mark_bar(color="#FF3366").encode(
-            x=alt.X('Tipologia:N'),
-            y=alt.Y('Percentuale:Q')
-        )
-
-        st.altair_chart(chart, use_container_width=True)
-
-        st.write("Tabella dati")
-        st.write(df)
-
+        #GRAFICO RAPPORTO TRA MINORI E TOTALE ABITANTI
+        st.subheader("Rapporto (%) tra adulti e totale abitanti")
+        st.write(RapportoAbAduS)
+        # crea grafico
+        RAAD = alt.Chart(RapportoAbAduS).mark_bar(color="#990066").encode(alt.X("Tipologia"), alt.Y("Percentuale"))
+        # label
+        textRAAD = RAAD.mark_text(align="center", baseline="bottom").encode(text="Percentuale")
+        # stampa grafico + label
+        st.altair_chart(RAAD + textRAAD, use_container_width=True)
 
     with colpr2:
     #GRAFICO DISTRIBUZIONE ADULTI NEI QUARTIERI
@@ -172,6 +168,7 @@ with terzaRiga:
         st.altair_chart(SADQ + text, use_container_width=True)
         with st.expander("Tabella distribuzione (%) degli stranieri nei quartieri"):
             st.write(StranieriQuart1864S)
+
 
 
 
