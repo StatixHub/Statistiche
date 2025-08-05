@@ -15,7 +15,6 @@ import plotly.express as px
 import squarify
 import seaborn as sb
 import altair as alt
-alt.renderers.set_embed_options(renderer='svg')
 
 
 #importa i db dai csv
@@ -44,56 +43,39 @@ colorMF= ["#FF0066", "#33CCCC"]
 colorFasce= ["#D69EC4", "#B772A1", "#C42B91", "#912F70", "#990066"]
 colorFasceSTR= ["#C0E8FB", "#6ECFF6", "#0093D7", "#0072B9", "#214297"]
 
-# contenitore prima riga
+#contenitore prima riga
 primaRiga = st.container()
 with primaRiga:
+    #configura numero colonne
     colpr1, colpr2 = st.columns(2, gap="medium")
-
     with colpr1:
+        #GRAFICO RAPPORTO TRA MINORI E TOTALE ABITANTI
         st.subheader("Rapporto (%) tra adulti e totale abitanti")
         st.write(RapportoAbAduS)
-
-        RAAD = alt.Chart(RapportoAbAduS).mark_bar(color="#990066").encode(
-            x=alt.X("Tipologia:N", title="Tipologia"),
-            y=alt.Y("Percentuale:Q", title="Percentuale (%)")
-        )
-
-        textRAAD = alt.Chart(RapportoAbAduS).mark_text(
-            align="center",
-            baseline="bottom",
-            dy=-5
-        ).encode(
-            x=alt.X("Tipologia:N"),
-            y=alt.Y("Percentuale:Q"),
-            text=alt.Text("Percentuale:Q")
-        )
-
-        layered_chart = RAAD + textRAAD
-
-        st.altair_chart(layered_chart, use_container_width=True)
+        # crea grafico
+        RAAD = alt.Chart(RapportoAbAduS).mark_bar(color="#990066").encode(alt.X("Tipologia"), alt.Y("Percentuale"))
+        # label
+        textRAAD = RAAD.mark_text(align="center", baseline="bottom").encode(text="Percentuale")
+        # stampa grafico + label
+        st.altair_chart(RAAD + textRAAD, use_container_width=True)
 
     with colpr2:
+    #GRAFICO DISTRIBUZIONE ADULTI NEI QUARTIERI
         st.subheader("Distribuzione (%) degli adulti nei quartieri")
+        # crea grafico
+        ADQ = alt.Chart(AdultiQuartS).mark_bar(color="#990066").encode(alt.X("Quartiere"),
+                                                                        alt.Y("Percentuale")).interactive()
+        #PRECEDENTE GRAFICO A LINEA
+        # ADQ = alt.Chart(AdultiQuartS).mark_line(point=alt.OverlayMarkDef(filled=True, fill="#990066"),
+        #                                      strokeWidth=2, color="#990066"
+        #                                      ).encode(alt.X("Quartiere"), alt.Y("Percentuale")).interactive()
 
-        ADQ = alt.Chart(AdultiQuartS).mark_bar(color="#990066").encode(
-            x=alt.X("Quartiere:N", title="Quartiere"),
-            y=alt.Y("Percentuale:Q", title="Percentuale (%)")
-        ).interactive()
-
-        text = alt.Chart(AdultiQuartS).mark_text(
+        text = ADQ.mark_text(
             align="center",
             baseline="middle",
-            dy=-7
-        ).encode(
-            x=alt.X("Quartiere:N"),
-            y=alt.Y("Percentuale:Q"),
-            text=alt.Text("Percentuale:Q")
-        )
-
-        layered_chart2 = ADQ + text
-
-        st.altair_chart(layered_chart2, use_container_width=True)
-
+            dy=-7).encode(text="Percentuale")
+        # stampa grafico + label
+        st.altair_chart(ADQ+text, use_container_width=True)
         with st.expander("Tabella distribuzione (%) adulti nei quartieri"):
             st.write(AdultiQuartS)
 
@@ -185,6 +167,7 @@ with terzaRiga:
         st.altair_chart(SADQ + text, use_container_width=True)
         with st.expander("Tabella distribuzione (%) degli stranieri nei quartieri"):
             st.write(StranieriQuart1864S)
+
 
 
 
