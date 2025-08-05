@@ -53,21 +53,12 @@ with primaRiga:
         st.subheader("Rapporto (%) tra adulti e totale abitanti")
         st.write(RapportoAbAduS)
         # crea grafico
-        #RAAD = alt.Chart(RapportoAbAduS).mark_bar(color="#990066").encode(alt.X("Tipologia"), alt.Y("Percentuale"))
+        RAAD = alt.Chart(RapportoAbAduS).mark_bar(color="#990066").encode(alt.X("Tipologia"), alt.Y("Percentuale"))
         # label
-        #textRAAD = RAAD.mark_text(align="center", baseline="bottom").encode(text="Percentuale")
+        textRAAD = RAAD.mark_text(align="center", baseline="bottom").encode(text="Percentuale")
         # stampa grafico + label
-        #st.altair_chart(RAAD + textRAAD, use_container_width=True)
-    # Crea grafico a barre Altair
-        RAAD = alt.Chart(RapportoAbAduS).mark_bar(color="#990066").encode(
-            alt.X("Tipologia:N", title="Tipologia"),
-            alt.Y("Percentuale:Q", title="Percentuale (%)")
-        ).configure_view(
-            render='svg'  # SVG più compatibile su Firefox
-        ).properties(
-            width='container'
-        )
-
+        st.altair_chart(RAAD + textRAAD, use_container_width=True)
+  
 # Etichette testuali sulle barre
 textRAAD = RAAD.mark_text(
     align="center",
@@ -183,4 +174,5 @@ with terzaRiga:
         st.altair_chart(SADQ + text, use_container_width=True)
         with st.expander("Tabella distribuzione (%) degli stranieri nei quartieri"):
             st.write(StranieriQuart1864S)
+
 
