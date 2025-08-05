@@ -43,32 +43,75 @@ colorFasce= ["#D69EC4", "#B772A1", "#C42B91", "#912F70", "#990066"]
 colorFasceSTR= ["#C0E8FB", "#6ECFF6", "#0093D7", "#0072B9", "#214297"]
 
 
-with colpr1:
-    st.subheader("Rapporto (%) tra adulti e totale abitanti")
-    st.write(RapportoAbAduS)
+import altair as alt
+import streamlit as st
+import pandas as pd
 
-    # Grafico a barre
-    RAAD = alt.Chart(RapportoAbAduS).mark_bar(color="#990066").encode(
-        x=alt.X("Tipologia:N", title="Tipologia"),
-        y=alt.Y("Percentuale:Q", title="Percentuale (%)")
-    )
+# caricamento dati di esempio (sostituisci con i tuoi CSV)
+RapportoAbAduS = pd.read_csv("./Destinazione/CSV/RapportoAbAdu.csv")
+AdultiQuartS = pd.read_csv("./Destinazione/CSV/AdultiQuart.csv")
 
-    # Etichette sopra le barre
-    textRAAD = alt.Chart(RapportoAbAduS).mark_text(
-        align="center",
-        baseline="bottom",
-        dy=-5
-    ).encode(
-        x=alt.X("Tipologia:N"),
-        y=alt.Y("Percentuale:Q"),
-        text=alt.Text("Percentuale:Q")
-    )
+# contenitore prima riga
+primaRiga = st.container()
+with primaRiga:
+    # definisci due colonne affiancate
+    colpr1, colpr2 = st.columns(2, gap="medium")
 
-    # Layer dei due grafici + renderer SVG (compatibile Firefox)
-    layered_chart = (RAAD + textRAAD).configure_view(render='svg')
+    with colpr1:
+        st.subheader("Rapporto (%) tra adulti e totale abitanti")
+        st.write(RapportoAbAduS)
 
-    # Visualizza il grafico in Streamlit
-    st.altair_chart(layered_chart, use_container_width=True)
+        # Grafico a barre
+        RAAD = alt.Chart(RapportoAbAduS).mark_bar(color="#990066").encode(
+            x=alt.X("Tipologia:N", title="Tipologia"),
+            y=alt.Y("Percentuale:Q", title="Percentuale (%)")
+        )
+
+        # Etichette sopra le barre
+        textRAAD = alt.Chart(RapportoAbAduS).mark_text(
+            align="center",
+            baseline="bottom",
+            dy=-5
+        ).encode(
+            x=alt.X("Tipologia:N"),
+            y=alt.Y("Percentuale:Q"),
+            text=alt.Text("Percentuale:Q")
+        )
+
+        # Layer dei due grafici + renderer SVG (compatibile Firefox)
+        layered_chart = (RAAD + textRAAD).configure_view(render='svg')
+
+        # Visualizza il grafico in Streamlit
+        st.altair_chart(layered_chart, use_container_width=True)
+
+    with colpr2:
+        st.subheader("Distribuzione (%) degli adulti nei quartieri")
+
+        # Grafico a barre interattivo
+        ADQ = alt.Chart(AdultiQuartS).mark_bar(color="#990066").encode(
+            x=alt.X("Quartiere:N", title="Quartiere"),
+            y=alt.Y("Percentuale:Q", title="Percentuale (%)")
+        ).interactive()
+
+        # Etichette sulle barre
+        text = alt.Chart(AdultiQuartS).mark_text(
+            align="center",
+            baseline="middle",
+            dy=-7
+        ).encode(
+            x=alt.X("Quartiere:N"),
+            y=alt.Y("Percentuale:Q"),
+            text=alt.Text("Percentuale:Q")
+        )
+
+        # Layer dei due grafici + renderer SVG
+        layered_chart2 = (ADQ + text).configure_view(render='svg')
+
+        st.altair_chart(layered_chart2, use_container_width=True)
+
+        with st.expander("Tabella distribuzione (%) adulti nei quartieri"):
+            st.write(AdultiQuartS)
+
 
 
 
@@ -156,6 +199,7 @@ with terzaRiga:
         st.altair_chart(SADQ + text, use_container_width=True)
         with st.expander("Tabella distribuzione (%) degli stranieri nei quartieri"):
             st.write(StranieriQuart1864S)
+
 
 
 
