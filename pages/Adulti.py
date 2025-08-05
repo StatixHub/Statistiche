@@ -58,18 +58,6 @@ with primaRiga:
         textRAAD = RAAD.mark_text(align="center", baseline="bottom").encode(text="Percentuale")
         # stampa grafico + label
         st.altair_chart(RAAD + textRAAD, use_container_width=True)
-  
-# Etichette testuali sulle barre
-textRAAD = RAAD.mark_text(
-    align="center",
-    baseline="bottom",
-    dy=-5
-).encode(
-    text="Percentuale:Q"
-)
-
-# Mostra il grafico con Streamlit
-st.altair_chart(RAAD + textRAAD, use_container_width=True)
 
     with colpr2:
     #GRAFICO DISTRIBUZIONE ADULTI NEI QUARTIERI
@@ -174,5 +162,6 @@ with terzaRiga:
         st.altair_chart(SADQ + text, use_container_width=True)
         with st.expander("Tabella distribuzione (%) degli stranieri nei quartieri"):
             st.write(StranieriQuart1864S)
+
 
 
