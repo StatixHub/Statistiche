@@ -44,7 +44,7 @@ st.title("StatiX")
 st.write("App per la visualizzazione dei dati statistici relativi al Comune di Lecco (minori, adulti e over 65 anni, scuole e asili)")
 #crea il markdown minori
 st.markdown("# Scuole e asili")
-st.subheader("***Scuole - dato a settembre 2024***")
+st.subheader("***Scuole - dato a settembre 2025***")
 #crea la sidebar con i markdown
 st.sidebar.markdown("# Scuole e asili")
 
@@ -231,7 +231,7 @@ quintaRiga = st.container()
 with quintaRiga:
     colqn1, colqn2 = st.columns(2)
     with colqn1:
-        st.subheader("***Asili - dato a dicembre 2024***")
+        st.subheader("***Asili - dato a dicembre 2025***")
 
 sestaRiga = st.container()
 with sestaRiga:
@@ -269,3 +269,4 @@ with sestaRiga:
         st.pyplot(figAlecco, use_container_width=True)
         with st.expander("Tabella iscritti asili nido città di Lecco"):
             st.write(AsiliLeccoS)
+
