@@ -1,5 +1,5 @@
 """
-File: StatiX8_MinoriStreamlit.py
+File: Minori.py
 Author: Chiara Tirendi
 Date: 13/11/2023
 Description: Grafici statistiche minori
@@ -357,6 +357,7 @@ with sestariga:
         figDFasST.update_layout(legend=dict(x=0, y=1.2), legend_orientation="h")
         figDFasST.update_xaxes(tickangle=270)
         st.plotly_chart(figDFasST, use_container_width=True)
+
 
 
 
