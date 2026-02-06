@@ -1,13 +1,11 @@
 altair==5.5.0
 matplotlib==3.8.0
-matplotlib-base==3.8.0
 numpy==1.26.0
-openpyxl==3.0.10
 pandas==2.1.1
 plotly==5.9.0
-ply==3.11
 seaborn==0.12.2
 squarify==0.4.3
 streamlit==1.47.1
+
 
 
