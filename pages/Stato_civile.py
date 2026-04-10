@@ -112,7 +112,7 @@ with (terzaRiga):
     coltz1, coltz2 = st.columns(2, gap="medium")
     with coltz1:
         # GRAFICO STATO LIBERO DA 0 A 17 ANNI
-        st.subheader("Distribuzione (%) dei minori nei quartieri")
+        st.subheader("Distribuzione della popolazione per stato civile nei quartieri")
         figQUA = px.bar(QuartieriSLS, x="Quartiere", y="Percentuale", color="Stato civile", labels={"value": "Percentuale"}, height=450,
                            text_auto=True, color_discrete_sequence=("#B6B0FF", "#70B0E0", "#9B0065"))
         figQUA.update_layout(legend=dict(x=0, y=1.2), legend_orientation="h")
